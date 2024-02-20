@@ -18,15 +18,34 @@ if [ "$C" != "0" ] ; then
 
 else
   #On copie les scripts dans le dossier partagé du Docker correspondant
+  mkdir -p ./files/FAI/etc/scripts/
   cp ./scripts/FAI ./files/FAI/etc/scripts/init
+
+  mkdir -p ./files/Box0/etc/scripts/
   cp ./scripts/Box0 ./files/Box0/etc/scripts/init
+
+  mkdir -p ./files/Box1/etc/scripts/
   cp ./scripts/Box1 ./files/Box1/etc/scripts/init
+
+  mkdir -p ./files/B0_WebServer/var/scripts/
   cp ./scripts/B0_WebServer ./files/B0_WebServer/var/scripts/init
+
+  mkdir -p ./files/R1/etc/scripts/
   cp ./scripts/R1 ./files/R1/etc/scripts/init
+
+  mkdir -p ./files/R2/etc/scripts/
   cp ./scripts/R2 ./files/R2/etc/scripts/init
+
+  mkdir -p ./files/R_Services/etc/scripts/
   cp ./scripts/R_Services ./files/R_Services/etc/scripts/init
+
+  mkdir -p ./files/WebServer0/var/scripts/
   cp ./scripts/WebServer0 ./files/WebServer0/var/scripts/init
+
+  mkdir -p ./files/R_Net_Services/etc/scripts/
   cp ./scripts/R_Net_Services ./files/R_Net_Services/etc/scripts/init
+
+  mkdir -p ./files/DNS_Server/etc/scripts/
   cp ./scripts/DNS_Server ./files/DNS_Server/etc/scripts/init
   echo 'Chargement des VM..'
   #On lance Yane
