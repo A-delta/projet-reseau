@@ -1,1 +1,10 @@
 #!/bin/bash
+
+ip link set dev eth0 up # switch avec R1 et R2
+ip addr add 6.6.7.1/24 dev eth0
+
+ip link set dev eth1 up # Box0
+ip addr add 6.6.7.97/27 dev eth1
+
+ip link set dev eth2 up # Box1
+ip addr add 6.6.7.129/27 dev eth2

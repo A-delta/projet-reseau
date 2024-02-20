@@ -1,1 +1,4 @@
 #!/bin/bash
+
+ip link set dev eth0 up # Box0
+ip addr add 192.168.255.2/25 dev eth0
