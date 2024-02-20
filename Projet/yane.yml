@@ -1,20 +1,32 @@
 network:
-  name: Projet
+  name: ProjetV2
   version: 0.1
   hosts:
+    - FAI
+      mode : docker
+      image : quagga_n7:latest
+      files : ./files/FAI/etc:/
+ 
+ 
     - Box0
       mode : docker
       image : dhcp_n7:latest
       files : ./files/Box0/etc:/
  
+    - Box1
+      mode : docker
+      image : dhcp_n7:latest
+      files : ./files/Box1/etc:/
+ 
+ 
+    - B0_WebServer
+      mode : docker
+      image : apache_n7:latest
+      files : ./files/B0_WebServer/var:/
+ 
     - B0_Client0
       mode : netns
       init : ./scripts/B0_Client0
- 
-    - B1_Webserver0
-      mode : docker
-      image : apache_n7:latest
-      files : ./files/B1_Webserver0/var:/
  
     - B1_Client0
       mode : netns
@@ -24,18 +36,6 @@ network:
       mode : docker
       image : quagga_n7:latest
       files : ./files/R1/etc:/
- 
- 
- 
-    - FAI
-      mode : docker
-      image : quagga_n7:latest
-      files : ./files/FAI/etc:/
- 
-    - Box1
-      mode : docker
-      image : dhcp_n7:latest
-      files : ./files/Box1/etc:/
  
     - R2
       mode : docker
@@ -57,25 +57,25 @@ network:
       image : quagga_n7:latest
       files : ./files/R_Net_Services/etc:/
  
-    - DNSServer
+    - DNS_Server
       mode : docker
       image : dns_n7:latest
-      files : ./files/DNSServer/etc:/
+      files : ./files/DNS_Server/etc:/
  
   links :
-    - B0_Client0:eth0!Box0:eth1
-    - FAI:eth0!Box0:eth0
-    - Box1:eth0!FAI:eth1
     - R1:eth1!R_Services:eth0
     - R_Services:eth1!WebServer0:eth0
     - R2:eth1!R_Net_Services:eth0
-    - R_Net_Services:eth1!DNSServer:eth0
+    - R_Net_Services:eth1!DNS_Server:eth0
+    - Box0:eth0!FAI:eth1
+    - FAI:eth2!Box1:eth0
+    - Box1:eth1!B1_Client0:eth0
  
   bridges:
     - Switch0
-      interfaces: B1_Client0:eth0!B1_Webserver0:eth0!Box1:eth1!
+      interfaces: R2:eth0!FAI:eth0!R1:eth0!
     - Switch1
-      interfaces: R2:eth0!FAI:eth2!R1:eth0!
+      interfaces: B0_WebServer:eth0!B0_Client0:eth0!Box0:eth1!
  
   consoles :
     - all

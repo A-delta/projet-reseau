@@ -1,19 +1,39 @@
 {
-    "Name": "Projet1",
+    "Name": "ProjetV2",
     "Hosts": [
+        {
+            "Name": "FAI",
+            "Type": "Routeur",
+            "Interfaces": "3"
+        },
+        {
+            "Name": "Switch1",
+            "Type": "Switch",
+            "Interfaces": "16"
+        },
         {
             "Name": "Box0",
             "Type": "DHCP",
             "Interfaces": "2"
         },
         {
-            "Name": "B0_Client0",
-            "Type": "Client",
+            "Name": "Box1",
+            "Type": "DHCP",
+            "Interfaces": "2"
+        },
+        {
+            "Name": "Switch2",
+            "Type": "Switch",
+            "Interfaces": "16"
+        },
+        {
+            "Name": "B0_WebServer",
+            "Type": "WEB",
             "Interfaces": "1"
         },
         {
-            "Name": "B1_Webserver0",
-            "Type": "WEB",
+            "Name": "B0_Client0",
+            "Type": "Client",
             "Interfaces": "1"
         },
         {
@@ -24,26 +44,6 @@
         {
             "Name": "R1",
             "Type": "Routeur",
-            "Interfaces": "2"
-        },
-        {
-            "Name": "Switch1",
-            "Type": "Switch",
-            "Interfaces": "16"
-        },
-        {
-            "Name": "Switch2",
-            "Type": "Switch",
-            "Interfaces": "16"
-        },
-        {
-            "Name": "FAI",
-            "Type": "Routeur",
-            "Interfaces": "3"
-        },
-        {
-            "Name": "Box1",
-            "Type": "DHCP",
             "Interfaces": "2"
         },
         {
@@ -67,30 +67,12 @@
             "Interfaces": "2"
         },
         {
-            "Name": "DNSServer",
+            "Name": "DNS_Server",
             "Type": "DNS",
             "Interfaces": "1"
         }
     ],
     "Links": [
-        {
-            "H1": "B0_Client0",
-            "I1": "eth0",
-            "H2": "Box0",
-            "I2": "eth1"
-        },
-        {
-            "H1": "FAI",
-            "I1": "eth0",
-            "H2": "Box0",
-            "I2": "eth0"
-        },
-        {
-            "H1": "Box1",
-            "I1": "eth0",
-            "H2": "FAI",
-            "I2": "eth1"
-        },
         {
             "H1": "R1",
             "I1": "eth1",
@@ -112,23 +94,29 @@
         {
             "H1": "R_Net_Services",
             "I1": "eth1",
-            "H2": "DNSServer",
+            "H2": "DNS_Server",
+            "I2": "eth0"
+        },
+        {
+            "H1": "Box0",
+            "I1": "eth0",
+            "H2": "FAI",
+            "I2": "eth1"
+        },
+        {
+            "H1": "FAI",
+            "I1": "eth2",
+            "H2": "Box1",
+            "I2": "eth0"
+        },
+        {
+            "H1": "Box1",
+            "I1": "eth1",
+            "H2": "B1_Client0",
             "I2": "eth0"
         }
     ],
     "Bridges": [
-        {
-            "Hosts": [
-                "B1_Client0",
-                "B1_Webserver0",
-                "Box1"
-            ],
-            "Interfaces": [
-                "eth0",
-                "eth0",
-                "eth1"
-            ]
-        },
         {
             "Hosts": [
                 "R2",
@@ -137,8 +125,20 @@
             ],
             "Interfaces": [
                 "eth0",
-                "eth2",
+                "eth0",
                 "eth0"
+            ]
+        },
+        {
+            "Hosts": [
+                "B0_WebServer",
+                "B0_Client0",
+                "Box0"
+            ],
+            "Interfaces": [
+                "eth0",
+                "eth0",
+                "eth1"
             ]
         }
     ]

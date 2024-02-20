@@ -18,16 +18,16 @@ if [ "$C" != "0" ] ; then
 
 else
   #On copie les scripts dans le dossier partagé du Docker correspondant
-  cp ./scripts/Box0 ./files/Box0/etc/scripts/init
-  cp ./scripts/B1_Webserver0 ./files/B1_Webserver0/var/scripts/init
-  cp ./scripts/R1 ./files/R1/etc/scripts/init
   cp ./scripts/FAI ./files/FAI/etc/scripts/init
+  cp ./scripts/Box0 ./files/Box0/etc/scripts/init
   cp ./scripts/Box1 ./files/Box1/etc/scripts/init
+  cp ./scripts/B0_WebServer ./files/B0_WebServer/var/scripts/init
+  cp ./scripts/R1 ./files/R1/etc/scripts/init
   cp ./scripts/R2 ./files/R2/etc/scripts/init
   cp ./scripts/R_Services ./files/R_Services/etc/scripts/init
   cp ./scripts/WebServer0 ./files/WebServer0/var/scripts/init
   cp ./scripts/R_Net_Services ./files/R_Net_Services/etc/scripts/init
-  cp ./scripts/DNSServer ./files/DNSServer/etc/scripts/init
+  cp ./scripts/DNS_Server ./files/DNS_Server/etc/scripts/init
   echo 'Chargement des VM..'
   #On lance Yane
   sudo ./yane > /dev/null

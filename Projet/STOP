@@ -23,16 +23,16 @@ elif [ "$C" -gt "1" ] ; then
 
 else
 
-  rm ./files/Box0/etc/scripts/init
-  rm ./files/B1_Webserver0/var/scripts/init
-  rm ./files/R1/etc/scripts/init
   rm ./files/FAI/etc/scripts/init
+  rm ./files/Box0/etc/scripts/init
   rm ./files/Box1/etc/scripts/init
+  rm ./files/B0_WebServer/var/scripts/init
+  rm ./files/R1/etc/scripts/init
   rm ./files/R2/etc/scripts/init
   rm ./files/R_Services/etc/scripts/init
   rm ./files/WebServer0/var/scripts/init
   rm ./files/R_Net_Services/etc/scripts/init
-  rm ./files/DNSServer/etc/scripts/init
+  rm ./files/DNS_Server/etc/scripts/init
   sudo ./yane -k > /dev/null 2> /dev/null
   #On supprime tout les namespaces
   sudo ip -all netns delete > /dev/null
