@@ -9,9 +9,9 @@ ip addr add 6.6.7.97/27 dev eth1
 ip link set dev eth2 up # Box1
 ip addr add 6.6.7.129/27 dev eth2
 
-# echo 1 > /proc/sys/net/ipv4/ip_forward
+echo 1 > /proc/sys/net/ipv4/ip_forward
 
-# ip route add 6.6.7.40/29 via 6.6.7.2 # réseau avec WebServer via R1
-# ip route add 6.6.7.80/29 via 6.6.7.3 # réseau avec DNS_Server via R2
+ip route add 6.6.7.40/29 via 6.6.7.2 # réseau avec WebServer via R1
+ip route add 6.6.7.80/29 via 6.6.7.3 # réseau avec DNS_Server via R2
 
 
