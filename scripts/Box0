@@ -1,5 +1,7 @@
 #!/bin/bash
 
+init
+
 ip link set dev eth0 up # FAI
 ip addr add 6.6.7.98/27 dev eth0
 
