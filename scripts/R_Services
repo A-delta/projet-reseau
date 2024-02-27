@@ -1,7 +1,5 @@
 #!/bin/bash
 
-init
-
 ip link set dev eth0 up # R1
 ip addr add 6.6.7.34/27 dev eth0
 

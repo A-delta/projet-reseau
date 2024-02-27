@@ -1,7 +1,5 @@
 #!/bin/bash
 
-init
-
 ip link set dev eth0 up # switch avec FAI et R2
 ip addr add 6.6.7.2/24 dev eth0
 

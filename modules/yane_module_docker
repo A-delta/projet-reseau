@@ -27,7 +27,7 @@ bootHost_docker () {
    logMessage LOG "Booting docker container ${SESSION_ID}_$1"
 
    $DOCKER start ${SESSION_ID}_$1 > /dev/null # boot du container
-   # Lignes suivantes extremement importantes voir le wiki page : communication netns/docker 
+   # Lignes suivantes extremement importantes voir le wiki page : communication netns/docker
    CONTAINER_PID=$($DOCKER inspect --format='{{.State.Pid}}' ${SESSION_ID}_$1)
    $LN -s /proc/$CONTAINER_PID/ns/net /var/run/netns/${SESSION_ID}_$1
 }
@@ -114,8 +114,8 @@ yaneHostPopulateFS_docker() {
 #-------------------------------------------------------------------------------
 yaneRunCmd_docker() {
     logMessage LOG "Running in '$1' the following command :"
-    #logMessage LOG "$2"
-    #$DOCKER exec "${SESSION_ID}_$1" $2
+    logMessage LOG "$2"
+    $DOCKER exec "${SESSION_ID}_$1" "init"
 }
 
 
