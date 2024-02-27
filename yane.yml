@@ -65,6 +65,7 @@ network:
   links :
     - R1:eth1!R_Services:eth0
     - R_Services:eth1!WebServer0:eth0
+    - R_Services:eth2!R_Net_Services:eth2
     - R2:eth1!R_Net_Services:eth0
     - R_Net_Services:eth1!DNS_Server:eth0
     - Box0:eth0!FAI:eth1
