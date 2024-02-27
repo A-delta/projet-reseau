@@ -52,9 +52,10 @@ else
   sudo ./yane > /dev/null
 
 
-   for containerId in $(docker ps -q)
+   for containerId in $(sudo docker ps -q)
     do
-        docker exec -it $containerId bash -c 'init'
+
+        sudo docker exec -it $containerId bash -c 'init'
     done
   exit
 fi
