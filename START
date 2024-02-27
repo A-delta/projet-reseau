@@ -50,5 +50,11 @@ else
   echo 'Chargement des VM..'
   #On lance Yane
   sudo ./yane > /dev/null
+
+
+   for containerId in $(docker ps -q)
+    do
+        docker exec -it $containerId bash -c 'init'
+    done
   exit
 fi

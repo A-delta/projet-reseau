@@ -114,8 +114,8 @@ yaneHostPopulateFS_docker() {
 #-------------------------------------------------------------------------------
 yaneRunCmd_docker() {
     logMessage LOG "Running in '$1' the following command :"
-    logMessage LOG "$2"
-    $DOCKER exec "${SESSION_ID}_$1" "init"
+    #logMessage LOG "$2"
+    #$DOCKER exec "${SESSION_ID}_$1" $2
 }
 
 
