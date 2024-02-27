@@ -54,7 +54,7 @@
         {
             "Name": "R_Services",
             "Type": "Routeur",
-            "Interfaces": "2"
+            "Interfaces": "3"
         },
         {
             "Name": "WebServer0",
@@ -64,7 +64,7 @@
         {
             "Name": "R_Net_Services",
             "Type": "Routeur",
-            "Interfaces": "2"
+            "Interfaces": "3"
         },
         {
             "Name": "DNS_Server",
@@ -84,6 +84,12 @@
             "I1": "eth1",
             "H2": "WebServer0",
             "I2": "eth0"
+        },
+        {
+            "H1": "R_Services",
+            "I1": "eth2",
+            "H2": "R_Net_Services",
+            "I2": "eth2"
         },
         {
             "H1": "R2",
