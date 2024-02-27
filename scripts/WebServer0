@@ -2,3 +2,5 @@
 
 ip link set dev eth0 up # R_Services
 ip addr add 6.6.7.42/29 dev eth0
+
+ip route add default via 6.6.7.41 # R_Services
