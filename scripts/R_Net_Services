@@ -8,3 +8,7 @@ ip addr add 6.6.7.81/29 dev eth1
 
 ip link set dev eth2 up # R_Services
 ip addr add 6.6.7.18/28 dev eth2
+
+
+echo 1 > /proc/sys/net/ipv4/ip_forward
+ip route add 6.6.7.40/29 via 6.6.7.65 # réseau avec WebServer via R2
