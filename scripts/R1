@@ -13,3 +13,6 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 ip route add 6.6.7.40/29 via 6.6.7.34 # réseau avec WebServer via R_Service
 ip route add 6.6.7.80/29 via 6.6.7.3 # réseau avec DNS_Server via R2
 
+# ----------- BOX
+ip route add 6.6.7.96/27 via 6.6.7.1 # réseau avec Box0 via FAI
+ip route add 6.6.7.128/27 via 6.6.7.1 # réseau avec Box1 via FAI

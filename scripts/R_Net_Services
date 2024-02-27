@@ -12,3 +12,7 @@ ip addr add 6.6.7.18/28 dev eth2
 
 echo 1 > /proc/sys/net/ipv4/ip_forward
 ip route add 6.6.7.40/29 via 6.6.7.65 # réseau avec WebServer via R2
+
+# ----------- BOX
+ip route add 6.6.7.96/27 via 6.6.7.65 # réseau avec Box0 via R2
+ip route add 6.6.7.128/27 via 6.6.7.65 # réseau avec Box1 via R2
