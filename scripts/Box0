@@ -8,5 +8,4 @@ ip link set dev eth1 up # Switch avec B0_Client0 et B0_WebServer
 ip addr add 192.168.255.1/25 dev eth1
 
 echo 1 > /proc/sys/net/ipv4/ip_forward
-ip route add 6.6.7.40/29 via 6.6.7.97 # FAI
-ip route add 6.6.7.80/29 via 6.6.7.97 # FAI
+ip route add default via 6.6.7.97 # FAI
