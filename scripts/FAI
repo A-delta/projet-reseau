@@ -20,8 +20,8 @@ systemctl start quagga
     echo "en";
     echo "conf t";
     echo "router rip";
-    echo "network 6.6.7.96/29"; # Box0
-    echo "network 6.6.7.128/29"; # Box1
+    echo "network 6.6.7.96/27"; # Box0
+    echo "network 6.6.7.128/27"; # Box1
     echo "network 6.6.7.0/24"; # R1 R2
     echo "exit";
     echo "exit";
