@@ -28,6 +28,6 @@ systemctl start quagga
     echo "network 6.6.7.16/28"; # R_Net_Services
     echo "exit";
     echo "exit";
-    #echo "write mem";
-    #echo "exit"
+    echo "write mem";
+    echo "exit"
 ) | telnet localhost ripd

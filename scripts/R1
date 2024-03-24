@@ -27,6 +27,6 @@ systemctl start quagga
     echo "network 6.6.7.0/24"; # FAI, R2
     echo "exit";
     echo "exit";
-    #echo "write mem";
-    #echo "exit"
+    echo "write mem";
+    echo "exit"
 ) | telnet localhost ripd
