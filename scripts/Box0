@@ -11,3 +11,5 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 ip route add default via 6.6.7.97 # FAI
 
 service isc-dhcp-server start
+
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
