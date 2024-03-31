@@ -7,11 +7,3 @@ ip link set dev eth1 up # R_Net_Services
 ip addr add 6.6.7.65/27 dev eth1
 
 echo 1 > /proc/sys/net/ipv4/ip_forward
-# ip route add 6.6.7.80/29 via 6.6.7.66 # réseau avec DNS_Server via R_Net_Services
-# ip route add 6.6.7.40/29 via 6.6.7.2 # réseau avec WebServer via R1
-
-# # ----------- BOX
-# ip route add 6.6.7.96/27 via 6.6.7.1 # réseau avec Box0 via FAI
-# ip route add 6.6.7.128/27 via 6.6.7.1 # réseau avec Box1 via FAI
-
-systemctl start quagga

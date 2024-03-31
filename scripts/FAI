@@ -10,8 +10,3 @@ ip link set dev eth2 up # Box1
 ip addr add 6.6.7.129/27 dev eth2
 
 echo 1 > /proc/sys/net/ipv4/ip_forward
-
-# ip route add 6.6.7.96/27 via 6.6.7.1 # réseau avec Box0 via FAI
-# ip route add 6.6.7.128/27 via 6.6.7.1 # réseau avec Box1 via FAI
-
-systemctl start quagga

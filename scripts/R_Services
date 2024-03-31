@@ -12,9 +12,3 @@ ip addr add 6.6.7.17/28 dev eth2
 
 
 echo 1 > /proc/sys/net/ipv4/ip_forward
-# ip route add 6.6.7.80/29 via 6.6.7.33 # réseau avec DNS_Server via R1
-
-# ip route add 6.6.7.96/27 via 6.6.7.33 # réseau avec Box0 via R1
-# ip route add 6.6.7.128/27 via 6.6.7.33 # réseau avec Box1 via R1
-
-systemctl start quagga
