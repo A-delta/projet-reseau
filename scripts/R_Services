@@ -18,16 +18,3 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 # ip route add 6.6.7.128/27 via 6.6.7.33 # réseau avec Box1 via R1
 
 systemctl start quagga
-
-(   echo "zebra";
-    echo "en";
-    echo "conf t";
-    echo "router rip";
-    echo "network 6.6.7.32/27"; # R1
-    echo "network 6.6.7.40/29"; # WebServer
-    echo "network 6.6.7.16/28"; # R_Net_Services
-    echo "exit";
-    echo "exit";
-    echo "write mem";
-    echo "exit"
-) | telnet localhost ripd
