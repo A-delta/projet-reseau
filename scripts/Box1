@@ -9,3 +9,5 @@ ip addr add 192.168.255.1/25 dev eth1
 
 echo 1 > /proc/sys/net/ipv4/ip_forward
 ip route add default via 6.6.7.129 # FAI
+
+service isc-dhcp-server start
