@@ -17,11 +17,11 @@ $TTL    604800
         604800 )   ; Minimum -> Durée de vie minimum du cache en secondes
 ;** Les 3 lignes suivantes permettent au serveur de se retrouver lui même
                NS      dns.monsupersite.com.        ;Nom du serveur
-dns        A       11.0.0.2                     ;Adresse IP du
+dns        A       6.6.7.82                     ;Adresse IP du
                                                        ;serveur de noms
 dns        HINFO   "PII 233 :-)" "Debian Testing"  ;Info complèmentaire
 
 ;** Les lignes suivantes définissent la table entre les noms et les IP
-www         A       10.0.0.2
-ftp	    A       12.0.0.2
+www         A       6.6.7.42
+ftp	    A       6.6.7.42
 
