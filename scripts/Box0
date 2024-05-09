@@ -12,4 +12,27 @@ ip route add default via 6.6.7.97 # FAI
 
 service isc-dhcp-server start
 
-iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+# iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+## Filtres
+# Bloquer toutes les requêtes sauf celles filtrées
+iptables -P INPUT DROP
+iptables -P OUTPUT DROP
+iptables -P FORWARD DROP
+# Accepter ping
+iptables -t filter -A OUTPUT -p icmp -j ACCEPT
+iptables -t filter -A INPUT -p icmp -j ACCEPT
+iptables -t filter -A FORWARD -p icmp -j ACCEPT
+
+# Accepter Rip routing
+iptables -A INPUT -p udp --dport 520 -j ACCEPT
+iptables -A OUTPUT -p udp --dport 520 -j ACCEPT
+iptables -A FORWARD -p udp --dport 520 -j ACCEPT
+
+# Accepter DNS
+iptables -t filter -A FORWARD -d 6.6.7.82/29 -p udp --dport 53 -j ACCEPT
+iptables -t filter -A FORWARD -s 6.6.7.82/29 -p udp --sport 53 -j ACCEPT
+
+# Accepter HTTP
+iptables -t filter -A FORWARD -d 6.6.7.42/29 -p tcp --dport 80 -j ACCEPT
+iptables -t filter -A FORWARD -s 6.6.7.42/29 -p tcp --sport 80 -j ACCEPT
