@@ -24,7 +24,7 @@ iptables -P FORWARD DROP
 # Allow ping
 iptables -t filter -A FORWARD -p icmp -j ACCEPT
 
-# rip
+# Allow rip
 iptables -A INPUT -p udp --dport 520 -j ACCEPT
 iptables -A OUTPUT -p udp --dport 520 -j ACCEPT
 iptables -A FORWARD -p udp --dport 520 -j ACCEPT
