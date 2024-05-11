@@ -12,3 +12,22 @@ ip addr add 6.6.7.17/28 dev eth2
 
 
 echo 1 > /proc/sys/net/ipv4/ip_forward
+
+
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+# Block everything
+iptables -P INPUT DROP
+iptables -P OUTPUT DROP
+iptables -P FORWARD DROP
+
+# Allow ping
+iptables -t filter -A FORWARD -p icmp -j ACCEPT
+
+# Allow DNS
+iptables -t filter -A FORWARD -d 6.6.7.82/29 -p udp --dport 53 -j ACCEPT
+iptables -t filter -A FORWARD -s 6.6.7.82/29 -p udp --sport 53 -j ACCEPT
+
+# Allow HTTP
+iptables -t filter -A FORWARD -d 6.6.7.42/29 -p tcp --dport 80 -j ACCEPT
+iptables -t filter -A FORWARD -s 6.6.7.42/29 -p tcp --sport 80 -j ACCEPT
