@@ -34,3 +34,4 @@ iptables -t filter -A FORWARD -o eth0 -s 192.168.255.2 -p tcp --sport 80 -j ACCE
 iptables -t nat -A PREROUTING -i eth0 -d 6.6.7.98 -p tcp --dport 80 -j DNAT --to-destination 192.168.255.2
 
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
