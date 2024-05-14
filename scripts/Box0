@@ -14,9 +14,9 @@ service isc-dhcp-server start
 
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 # Block everything
-# iptables -P INPUT DROP
-# iptables -P OUTPUT DROP
-# iptables -P FORWARD DROP
+iptables -P INPUT DROP
+iptables -P OUTPUT DROP
+iptables -P FORWARD DROP
 
 # Allow ping
 iptables -t filter -A FORWARD -p icmp -j ACCEPT
