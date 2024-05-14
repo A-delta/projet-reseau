@@ -8,7 +8,30 @@ ip link set dev eth1 up # Switch avec B0_Client0 et B0_WebServer
 ip addr add 192.168.255.1/25 dev eth1
 
 echo 1 > /proc/sys/net/ipv4/ip_forward
+ip route add default via 6.6.7.97 # FAI
 
-ip route add default via 6.6.7.97
-ip route add 6.6.7.40/29 via 6.6.7.97 # FAI
-ip route add 6.6.7.80/29 via 6.6.7.97 # FAI
+service isc-dhcp-server start
+
+
+# Block everything
+ iptables -P INPUT DROP
+ iptables -P FORWARD DROP
+
+
+# Allow ping
+iptables -t filter -A FORWARD -p icmp -j ACCEPT
+
+# Allow DNS
+iptables -t filter -A FORWARD -d 6.6.7.82/29 -p udp --dport 53 -j ACCEPT
+iptables -t filter -A FORWARD -s 6.6.7.82/29 -p udp --sport 53 -j ACCEPT
+
+iptables -t filter -A FORWARD -d 6.6.7.42/29 -p tcp --dport 80 -j ACCEPT
+iptables -t filter -A FORWARD -s 6.6.7.42/29 -p tcp --sport 80 -j ACCEPT
+
+iptables -t filter -A FORWARD -i eth0 -d 192.168.255.2 -p tcp --dport 80 -j ACCEPT
+iptables -t filter -A FORWARD -o eth0 -s 192.168.255.2 -p tcp --sport 80 -j ACCEPT
+
+iptables -t nat -A PREROUTING -i eth0 -d 6.6.7.98 -p tcp --dport 80 -j DNAT --to-destination 192.168.255.2
+
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+

@@ -1,5 +1,5 @@
 $TTL    604800
-@ IN SOA dns.monsupersite.com. root.monsupersite.com.  (
+@ IN SOA dns.supersiteprive.com. root.supersiteprive.com.  (
         20041122   ; Serial  -> N° de série à incrémenter à chaque modif
                    ;            de ce fichier. Ce N° est utilisé par les
                    ;            serveurs esclaves pour lui indiquer qu'il
@@ -22,6 +22,6 @@ dns        A       6.6.7.82                     ;Adresse IP du
 dns        HINFO   "PII 233 :-)" "Debian Testing"  ;Info complèmentaire
 
 ;** Les lignes suivantes définissent la table entre les noms et les IP
-www         A       6.6.7.42
-ftp	    A       6.6.7.42
+www         A       6.6.7.98
+ftp	    A       6.6.7.98
 

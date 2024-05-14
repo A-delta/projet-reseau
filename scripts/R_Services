@@ -12,8 +12,27 @@ ip addr add 6.6.7.17/28 dev eth2
 
 
 echo 1 > /proc/sys/net/ipv4/ip_forward
-ip route add 6.6.7.80/29 via 6.6.7.33 # réseau avec DNS_Server via R1
 
-# ----------- BOX
-ip route add 6.6.7.96/27 via 6.6.7.33 # réseau avec Box0 via R1
-ip route add 6.6.7.128/27 via 6.6.7.33 # réseau avec Box1 via R1
+
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+# Block everything
+iptables -P INPUT DROP
+iptables -P OUTPUT DROP
+iptables -P FORWARD DROP
+
+# Allow ping
+iptables -t filter -A FORWARD -p icmp -j ACCEPT
+
+# Allow rip
+iptables -A INPUT -p udp --dport 520 -j ACCEPT
+iptables -A OUTPUT -p udp --dport 520 -j ACCEPT
+iptables -A FORWARD -p udp --dport 520 -j ACCEPT
+
+# Allow DNS
+iptables -t filter -A FORWARD -d 6.6.7.82/29 -p udp --dport 53 -j ACCEPT
+iptables -t filter -A FORWARD -s 6.6.7.82/29 -p udp --sport 53 -j ACCEPT
+
+# Allow HTTP
+iptables -t filter -A FORWARD -d 6.6.7.42/29 -p tcp --dport 80 -j ACCEPT
+iptables -t filter -A FORWARD -s 6.6.7.42/29 -p tcp --sport 80 -j ACCEPT
