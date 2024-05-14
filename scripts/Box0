@@ -29,4 +29,4 @@ iptables -t filter -A FORWARD -s 6.6.7.82/29 -p udp --sport 53 -j ACCEPT
 iptables -A INPUT -p tcp --dport 80 -s 6.6.7.0/29 -j ACCEPT
 
 # Forward traffic from the public interface to the private web server
-iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j DNAT --to-destination 10.0.0.42:80
+iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j DNAT --to-destination 192.168.255.2:80
