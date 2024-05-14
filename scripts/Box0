@@ -31,3 +31,4 @@ iptables -t filter -A FORWARD -s 6.6.7.42/29 -p tcp --sport 80 -j ACCEPT
 
 # Forward traffic from the public interface to the private web server
 iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j DNAT --to-destination 192.168.255.2:80
+iptables -t nat -A POSTROUTING -o eth0 -s 192.168.255.2 -j MASQUERADE
