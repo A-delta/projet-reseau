@@ -25,8 +25,8 @@ iptables -t filter -A FORWARD -p icmp -j ACCEPT
 iptables -t filter -A FORWARD -d 6.6.7.82/29 -p udp --dport 53 -j ACCEPT
 iptables -t filter -A FORWARD -s 6.6.7.82/29 -p udp --sport 53 -j ACCEPT
 
-iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-iptables -A OUTPUT -p tcp --sport 80 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+iptables -t filter -A FORWARD -d 6.6.7.42/29 -p tcp --dport 80 -j ACCEPT
+iptables -t filter -A FORWARD -s 6.6.7.42/29 -p tcp --sport 80 -j ACCEPT
 
 iptables -t filter -A FORWARD -i eth0 -d 192.168.255.2 -p tcp --dport 80 -j ACCEPT
 iptables -t filter -A FORWARD -o eth0 -s 192.168.255.2 -p tcp --sport 80 -j ACCEPT
