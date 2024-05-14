@@ -15,7 +15,6 @@ service isc-dhcp-server start
 
 # Block everything
 iptables -P INPUT DROP
-iptables -P OUTPUT DROP
 iptables -P FORWARD DROP
 
 # Allow ping
@@ -26,9 +25,9 @@ iptables -t filter -A FORWARD -d 6.6.7.82/29 -p udp --dport 53 -j ACCEPT
 iptables -t filter -A FORWARD -s 6.6.7.82/29 -p udp --sport 53 -j ACCEPT
 
 # Allow incoming HTTP traffic on port 80 to public server
-iptables -t filter -A FORWARD -d 6.6.7.42/29 -p tcp --dport 80 -j ACCEPT
-iptables -t filter -A FORWARD -s 6.6.7.42/29 -p tcp --sport 80 -j ACCEPT
+iptables -A FORWARD -i eth0 -o eth1 -p tcp --syn --dport 80 -m conntrack --ctstate NEW -j ACCEPT
+iptables -A FORWARD -i eth0 -o eth1 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -A FORWARD -i eth1 -o eth0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
-iptables -t filter -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 192.168.255.2:80
-
-iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j DNAT --to-destination 192.168.255.2
+iptables -t nat -A POSTROUTING -o eth1 -p tcp --dport 80 -d 192.168.255.2 -j SNAT --to-source 192.168.255.1
