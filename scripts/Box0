@@ -14,7 +14,7 @@ service isc-dhcp-server start
 
 
 # Block everything
-# iptables -P INPUT DROP
+ iptables -P INPUT DROP
 # iptables -P FORWARD DROP
 
 
