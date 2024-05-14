@@ -28,6 +28,9 @@ iptables -t filter -A FORWARD -s 6.6.7.82/29 -p udp --sport 53 -j ACCEPT
 iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 iptables -A OUTPUT -p tcp --sport 80 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 
+iptables -A FORWARD -p tcp --dport 80 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -p tcp --sport 80 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
 
 iptables -t nat -A PREROUTING -i eth0 -d 6.6.7.98 -p tcp --dport 80 -j DNAT --to-destination 192.168.255.2
 
