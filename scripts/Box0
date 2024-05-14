@@ -29,8 +29,6 @@ iptables -t filter -A FORWARD -s 6.6.7.82/29 -p udp --sport 53 -j ACCEPT
 iptables -t filter -A FORWARD -d 6.6.7.42/29 -p tcp --dport 80 -j ACCEPT
 iptables -t filter -A FORWARD -s 6.6.7.42/29 -p tcp --sport 80 -j ACCEPT
 
-iptables -t filter -A FORWARD -p tcp --dport 80 -j DNAT --to-destination 192.168.255.2:80
-iptables -t filter -A INPUT -p tcp --sport 80 -j ACCEPT
-iptables -t filter -A FORWARD -s 192.168.255.2 -j ACCEPT
+iptables -t filter -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 192.168.255.2:80
 
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
