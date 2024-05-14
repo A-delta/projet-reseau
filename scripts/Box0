@@ -15,7 +15,7 @@ service isc-dhcp-server start
 
 # Block everything
  iptables -P INPUT DROP
-# iptables -P FORWARD DROP
+ iptables -P FORWARD DROP
 
 
 # Allow ping
