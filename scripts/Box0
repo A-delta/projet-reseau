@@ -25,9 +25,10 @@ iptables -t filter -A FORWARD -p icmp -j ACCEPT
 iptables -t filter -A FORWARD -d 6.6.7.82/29 -p udp --dport 53 -j ACCEPT
 iptables -t filter -A FORWARD -s 6.6.7.82/29 -p udp --sport 53 -j ACCEPT
 
-sudo iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-sudo iptables -A OUTPUT -p tcp --sport 80 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+ iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+ iptables -A OUTPUT -p tcp --sport 80 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 
 
-# Allow incoming HTTP traffic on port 80 to public server
- iptables -t nat -A PREROUTING -i eth0 -d 6.6.7.98 -p tcp --dport 80 -j DNAT --to-destination 192.168.255.2
+ #iptables -t nat -A PREROUTING -i eth0 -d 6.6.7.98 -p tcp --dport 80 -j DNAT --to-destination 192.168.255.2
+
+ iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
